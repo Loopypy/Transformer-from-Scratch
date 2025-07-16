@@ -326,7 +326,7 @@ class Transformer(nn.Module):
         tgt = self.positional_encoding(tgt)
 
         enc_output = self.encoder(src, src_mask)    # 编码器输出 (batch_size, src_seq_len, d_model)
-        dec_output = self.decoder(tgt, enc_output, tgt_mask)    # 解码器输出 (batch_size, tgt_seq_len, d_model)
+        dec_output = self.decoder(tgt, enc_output, tgt_mask, src_mask)    # 解码器输出 (batch_size, tgt_seq_len, d_model)
 
         output = self.fc_out(dec_output)    # 输出线性层 (batch_size, tgt_seq_len, tgt_vocab_size)
         return output    # 返回预测分布张量
